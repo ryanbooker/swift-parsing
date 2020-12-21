@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing - Parsers</title>
+    <link rel="stylesheet" type="text/css" href="/swift-parsing/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swift-parsing/">
+            <strong>
+                Parsing
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#nested type aliases">Nested Type Aliases</a><ul><li class="typealias"><a href="#parsers.always">Always</a></li><li class="typealias"><a href="#parsers.anyparser">Any​Parser</a></li><li class="typealias"><a href="#parsers.conditional">Conditional</a></li><li class="typealias"><a href="#parsers.end">End</a></li><li class="typealias"><a href="#parsers.fail">Fail</a></li><li class="typealias"><a href="#parsers.first">First</a></li><li class="typealias"><a href="#parsers.firstwhere">First​Where</a></li><li class="typealias"><a href="#parsers.lazy">Lazy</a></li><li class="typealias"><a href="#parsers.many">Many</a></li><li class="typealias"><a href="#parsers.newline">Newline</a></li><li class="typealias"><a href="#parsers.oneofmany">One​OfMany</a></li><li class="typealias"><a href="#parsers.prefix">Prefix</a></li><li class="typealias"><a href="#parsers.prefixthrough">Prefix​Through</a></li><li class="typealias"><a href="#parsers.prefixupto">Prefix​UpTo</a></li><li class="typealias"><a href="#parsers.rest">Rest</a></li><li class="typealias"><a href="#parsers.skip">Skip</a></li><li class="typealias"><a href="#parsers.startswith">Starts​With</a></li><li class="typealias"><a href="#parsers.whitespace">Whitespace</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Enumeration</small>
+    <code class="name">Parsers</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">Parsers</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A namespace for types that serve as parsers.</p>
+
+</div>
+<div class="discussion">
+    <p>The various operators defined as extensions on <code>Parser</code> implement their functionality as classes
+or structures that extend this enumeration. For example, the <code>map</code> operator returns a
+<code>Parsers.Map</code> instance.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        
+        <h3>Nested Types</h3>
+<dl>
+    <dt class="structure"><code><a href="/swift-parsing/Parsers_BoolParser">Parsers.BoolParser</a></code></dt>
+<dd><p>A parser that consumes a Boolean value from the beginning of a collection of UTF-8 code units.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringBoolParser">Parsers.SubstringBoolParser</a></code></dt>
+<dd><p>A parser that consumes a Boolean value from the beginning of a substring.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_CompactMap">Parsers.CompactMap</a></code></dt>
+<dd><p>A parser that outputs the non-<code>nil</code> results of calling the given transformation with the
+output of its upstream parser.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_DoubleParser">Parsers.DoubleParser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringDoubleParser">Parsers.SubstringDoubleParser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_FloatParser">Parsers.FloatParser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringFloatParser">Parsers.SubstringFloatParser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Float80Parser">Parsers.Float80Parser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringFloat80Parser">Parsers.SubstringFloat80Parser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Filter">Parsers.Filter</a></code></dt>
+<dd><p>A parser that filters the output of an upstream parser when it does not satisfy a predicate.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_FlatMap">Parsers.FlatMap</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_IntParser">Parsers.IntParser</a></code></dt>
+<dd><p>A parser that consumes an integer (with an optional leading <code>+</code> or <code>-</code> sign) from the
+beginning of a collection of UTF8 code units.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringIntParser">Parsers.SubstringIntParser</a></code></dt>
+<dd><p>A parser that consumes an integer (with an optional leading <code>+</code> or <code>-</code> sign) from the
+beginning of a substring using a UTF-8 parser.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Map">Parsers.Map</a></code></dt>
+<dd><p>A parser that transforms the output of another parser with a given closure.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_OneOf">Parsers.OneOf</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_OptionalParser">Parsers.OptionalParser</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Pipe">Parsers.Pipe</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Pullback">Parsers.Pullback</a></code></dt>
+<dd><p>Transforms the <code>Input</code> of a downstream parser.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SkipFirst">Parsers.SkipFirst</a></code></dt>
+<dd><p>A parser that runs two parsers, one after the other, taking only the output of the second
+parser.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SkipSecond">Parsers.SkipSecond</a></code></dt>
+<dd><p>A parser that runs two parsers, one after the other, taking only the output of the first
+parser.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Stream">Parsers.Stream</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringToUTF8View">Parsers.SubstringToUTF8View</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_UnicodeScalarViewToUTF8View">Parsers.UnicodeScalarViewToUTF8View</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_SubstringToUnicodeScalars">Parsers.SubstringToUnicodeScalars</a></code></dt>
+<dd></dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Take2">Parsers.Take2</a></code></dt>
+<dd><p>A parser that runs two parsers, one after the other, and returns both outputs in a tuple.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Take3">Parsers.Take3</a></code></dt>
+<dd><p>A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+and returns a flattened tuple of the first parser's outputs and the second parser's output.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Take4">Parsers.Take4</a></code></dt>
+<dd><p>A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+and returns a flattened tuple of the first parser's outputs and the second parser's output.</p>
+</dd>
+<dt class="structure"><code><a href="/swift-parsing/Parsers_Take5">Parsers.Take5</a></code></dt>
+<dd><p>A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+and returns a flattened tuple of the first parser's outputs and the second parser's output.</p>
+</dd>
+</dl>
+</section>
+    <section id="nested type aliases">
+        <h2>Nested Type Aliases</h2>
+
+        <div role="article" class="typealias" id="parsers.always">
+    <h3>
+        <code>Always</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Always</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Always"><span class="type">Always</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.anyparser">
+    <h3>
+        <code>Any​Parser</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">AnyParser</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/AnyParser"><span class="type">AnyParser</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.conditional">
+    <h3>
+        <code>Conditional</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Conditional</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Conditional"><span class="type">Conditional</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.end">
+    <h3>
+        <code>End</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">End</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/End"><span class="type">End</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.fail">
+    <h3>
+        <code>Fail</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Fail</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Fail"><span class="type">Fail</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.first">
+    <h3>
+        <code>First</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">First</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/First"><span class="type">First</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.firstwhere">
+    <h3>
+        <code>First​Where</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">FirstWhere</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/FirstWhere"><span class="type">FirstWhere</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.lazy">
+    <h3>
+        <code>Lazy</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Lazy</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Lazy"><span class="type">Lazy</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.many">
+    <h3>
+        <code>Many</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Many</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Many"><span class="type">Many</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.newline">
+    <h3>
+        <code>Newline</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Newline</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Newline"><span class="type">Newline</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.oneofmany">
+    <h3>
+        <code>One​OfMany</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">OneOfMany</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/OneOfMany"><span class="type">OneOfMany</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.prefix">
+    <h3>
+        <code>Prefix</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Prefix</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Prefix"><span class="type">Prefix</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.prefixthrough">
+    <h3>
+        <code>Prefix​Through</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">PrefixThrough</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/PrefixThrough"><span class="type">PrefixThrough</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.prefixupto">
+    <h3>
+        <code>Prefix​UpTo</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">PrefixUpTo</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/PrefixUpTo"><span class="type">PrefixUpTo</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.rest">
+    <h3>
+        <code>Rest</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Rest</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Rest"><span class="type">Rest</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.skip">
+    <h3>
+        <code>Skip</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Skip</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Skip"><span class="type">Skip</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.startswith">
+    <h3>
+        <code>Starts​With</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">StartsWith</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/StartsWith"><span class="type">StartsWith</span></a></code></pre></body></html>
+</div>
+<div role="article" class="typealias" id="parsers.whitespace">
+    <h3>
+        <code>Whitespace</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">Whitespace</span> = <span class="type">Parsing</span>.<a href="/swift-parsing/Whitespace"><span class="type">Whitespace</span></a></code></pre></body></html>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-12-21T21:38:59+0000">December 21, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

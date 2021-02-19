@@ -29,7 +29,7 @@ final class TakeTests: XCTestCase {
         == XCTUnwrap(First().take(First()).take(First()).take(First()).take(First()).parse(&input)))
     XCTAssertEqual("", input)
   }
-  
+
   func testTake6Success() {
     var input = "123456"[...]
     let first5 = First<Substring>().take(First()).take(First()).take(First()).take(First())
@@ -69,7 +69,7 @@ final class TakeTests: XCTestCase {
         == XCTUnwrap(parser.parse(&input)))
     XCTAssertEqual("", input)
   }
-  
+
   func testTake10Success() {
     var input = "1234567890"[...]
     let first5 = First<Substring>().take(First()).take(First()).take(First()).take(First())
@@ -79,7 +79,7 @@ final class TakeTests: XCTestCase {
         == XCTUnwrap(parser.parse(&input)))
     XCTAssertEqual("", input)
   }
-  
+
   func testTake11Success() {
     var input = "1234567890A"[...]
     let first5 = First<Substring>().take(First()).take(First()).take(First()).take(First())

@@ -66,7 +66,7 @@ extension Parser {
   where P: Parser, P.Input == Input, Output == (A, B, C, D) {
     .init(self, parser)
   }
-  
+
   /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
   /// and the given parser's output in a flattened tuple.
   ///
@@ -281,7 +281,7 @@ extension Parsers {
       return (a, b, c, d, e)
     }
   }
-  
+
   /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
   /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
   public struct Take6<ABCDE, A, B, C, D, E, F>: Parser
@@ -293,7 +293,7 @@ extension Parsers {
   {
     public let abcde: ABCDE
     public let f: F
-    
+
     @inlinable
     public init(
       _ abcde: ABCDE,
@@ -302,7 +302,7 @@ extension Parsers {
       self.abcde = abcde
       self.f = f
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDE.Input) -> (A, B, C, D, E, F.Output)? {
       let original = input
@@ -328,7 +328,7 @@ extension Parsers {
   {
     public let abcdef: ABCDEF
     public let g: G
-    
+
     @inlinable
     public init(
       _ abcdef: ABCDEF,
@@ -337,7 +337,7 @@ extension Parsers {
       self.abcdef = abcdef
       self.g = g
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDEF.Input) -> (A, B, C, D, E, F, G.Output)? {
       let original = input
@@ -363,7 +363,7 @@ extension Parsers {
   {
     public let abcdefg: ABCDEFG
     public let h: H
-    
+
     @inlinable
     public init(
       _ abcdefg: ABCDEFG,
@@ -372,7 +372,7 @@ extension Parsers {
       self.abcdefg = abcdefg
       self.h = h
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDEFG.Input) -> (A, B, C, D, E, F, G, H.Output)? {
       let original = input
@@ -398,7 +398,7 @@ extension Parsers {
   {
     public let abcdefgh: ABCDEFGH
     public let i: I
-    
+
     @inlinable
     public init(
       _ abcdefgh: ABCDEFGH,
@@ -407,7 +407,7 @@ extension Parsers {
       self.abcdefgh = abcdefgh
       self.i = i
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDEFGH.Input) -> (A, B, C, D, E, F, G, H, I.Output)? {
       let original = input
@@ -433,7 +433,7 @@ extension Parsers {
   {
     public let abcdefghi: ABCDEFGHI
     public let j: J
-    
+
     @inlinable
     public init(
       _ abcdefghi: ABCDEFGHI,
@@ -442,7 +442,7 @@ extension Parsers {
       self.abcdefghi = abcdefghi
       self.j = j
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDEFGHI.Input) -> (A, B, C, D, E, F, G, H, I, J.Output)? {
       let original = input
@@ -468,7 +468,7 @@ extension Parsers {
   {
     public let abcdefghij: ABCDEFGHIJ
     public let k: K
-    
+
     @inlinable
     public init(
       _ abcdefghij: ABCDEFGHIJ,
@@ -477,7 +477,7 @@ extension Parsers {
       self.abcdefghij = abcdefghij
       self.k = k
     }
-    
+
     @inlinable
     public func parse(_ input: inout ABCDEFGHIJ.Input) -> (A, B, C, D, E, F, G, H, I, J, K.Output)? {
       let original = input

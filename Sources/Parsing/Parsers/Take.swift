@@ -27,7 +27,7 @@ extension Parser {
   where P: Parser, P.Input == Input {
     .init(self, parser)
   }
-
+  
   /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
   /// and the given parser's output in a flattened tuple.
   ///
@@ -40,7 +40,7 @@ extension Parser {
   where P: Parser, P.Input == Input, Output == (A, B) {
     .init(self, parser)
   }
-
+  
   /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
   /// and the given parser's output in a flattened tuple.
   ///
@@ -53,7 +53,7 @@ extension Parser {
   where P: Parser, P.Input == Input, Output == (A, B, C) {
     .init(self, parser)
   }
-
+  
   /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
   /// and the given parser's output in a flattened tuple.
   ///
@@ -64,6 +64,84 @@ extension Parser {
     _ parser: P
   ) -> Parsers.Take5<Self, A, B, C, D, P>
   where P: Parser, P.Input == Input, Output == (A, B, C, D) {
+    .init(self, parser)
+  }
+  
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, P>(
+    _ parser: P
+  ) -> Parsers.Take6<Self, A, B, C, D, E, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E) {
+    .init(self, parser)
+  }
+
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, F, P>(
+    _ parser: P
+  ) -> Parsers.Take7<Self, A, B, C, D, E, F, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E, F) {
+    .init(self, parser)
+  }
+
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, F, G, P>(
+    _ parser: P
+  ) -> Parsers.Take8<Self, A, B, C, D, E, F, G, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E, F, G) {
+    .init(self, parser)
+  }
+
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, F, G, H, P>(
+    _ parser: P
+  ) -> Parsers.Take9<Self, A, B, C, D, E, F, G, H, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E, F, G, H) {
+    .init(self, parser)
+  }
+
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, F, G, H, I, P>(
+    _ parser: P
+  ) -> Parsers.Take10<Self, A, B, C, D, E, F, G, H, I, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E, F, G, H, I) {
+    .init(self, parser)
+  }
+
+  /// Returns a parser that runs this parser and the given parser, returning this parser's outputs
+  /// and the given parser's output in a flattened tuple.
+  ///
+  /// - Parameter parser: A parser to run immediately after this parser.
+  /// - Returns: A parser that runs two parsers, returning both outputs in a flattened tuple.
+  @inlinable
+  public func take<A, B, C, D, E, F, G, H, I, J, P>(
+    _ parser: P
+  ) -> Parsers.Take11<Self, A, B, C, D, E, F, G, H, I, J, P>
+  where P: Parser, P.Input == Input, Output == (A, B, C, D, E, F, G, H, I, J) {
     .init(self, parser)
   }
 }
@@ -78,13 +156,13 @@ extension Parsers {
   {
     public let a: A
     public let b: B
-
+    
     @inlinable
     public init(_ a: A, _ b: B) {
       self.a = a
       self.b = b
     }
-
+    
     @inlinable
     public func parse(_ input: inout A.Input) -> (A.Output, B.Output)? {
       let original = input
@@ -98,7 +176,7 @@ extension Parsers {
       return (a, b)
     }
   }
-
+  
   /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
   /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
   public struct Take3<AB, A, B, C>: Parser
@@ -110,7 +188,7 @@ extension Parsers {
   {
     public let ab: AB
     public let c: C
-
+    
     @inlinable
     public init(
       _ ab: AB,
@@ -119,7 +197,7 @@ extension Parsers {
       self.ab = ab
       self.c = c
     }
-
+    
     @inlinable
     public func parse(_ input: inout AB.Input) -> (A, B, C.Output)? {
       let original = input
@@ -133,7 +211,7 @@ extension Parsers {
       return (a, b, c)
     }
   }
-
+  
   /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
   /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
   public struct Take4<ABC, A, B, C, D>: Parser
@@ -145,7 +223,7 @@ extension Parsers {
   {
     public let abc: ABC
     public let d: D
-
+    
     @inlinable
     public init(
       _ abc: ABC,
@@ -154,7 +232,7 @@ extension Parsers {
       self.abc = abc
       self.d = d
     }
-
+    
     @inlinable
     public func parse(_ input: inout ABC.Input) -> (A, B, C, D.Output)? {
       let original = input
@@ -168,7 +246,7 @@ extension Parsers {
       return (a, b, c, d)
     }
   }
-
+  
   /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
   /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
   public struct Take5<ABCD, A, B, C, D, E>: Parser
@@ -180,7 +258,7 @@ extension Parsers {
   {
     public let abcd: ABCD
     public let e: E
-
+    
     @inlinable
     public init(
       _ abcd: ABCD,
@@ -189,7 +267,7 @@ extension Parsers {
       self.abcd = abcd
       self.e = e
     }
-
+    
     @inlinable
     public func parse(_ input: inout ABCD.Input) -> (A, B, C, D, E.Output)? {
       let original = input
@@ -201,6 +279,216 @@ extension Parsers {
         return nil
       }
       return (a, b, c, d, e)
+    }
+  }
+  
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take6<ABCDE, A, B, C, D, E, F>: Parser
+  where
+    ABCDE: Parser,
+    ABCDE.Output == (A, B, C, D, E),
+    F: Parser,
+    ABCDE.Input == F.Input
+  {
+    public let abcde: ABCDE
+    public let f: F
+    
+    @inlinable
+    public init(
+      _ abcde: ABCDE,
+      _ f: F
+    ) {
+      self.abcde = abcde
+      self.f = f
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDE.Input) -> (A, B, C, D, E, F.Output)? {
+      let original = input
+      guard let (a, b, c, d, e) = self.abcde.parse(&input)
+      else { return nil }
+      guard let f = self.f.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f)
+    }
+  }
+
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take7<ABCDEF, A, B, C, D, E, F, G>: Parser
+  where
+    ABCDEF: Parser,
+    ABCDEF.Output == (A, B, C, D, E, F),
+    G: Parser,
+    ABCDEF.Input == G.Input
+  {
+    public let abcdef: ABCDEF
+    public let g: G
+    
+    @inlinable
+    public init(
+      _ abcdef: ABCDEF,
+      _ g: G
+    ) {
+      self.abcdef = abcdef
+      self.g = g
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDEF.Input) -> (A, B, C, D, E, F, G.Output)? {
+      let original = input
+      guard let (a, b, c, d, e, f) = self.abcdef.parse(&input)
+      else { return nil }
+      guard let g = self.g.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f, g)
+    }
+  }
+
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take8<ABCDEFG, A, B, C, D, E, F, G, H>: Parser
+  where
+    ABCDEFG: Parser,
+    ABCDEFG.Output == (A, B, C, D, E, F, G),
+    H: Parser,
+    ABCDEFG.Input == H.Input
+  {
+    public let abcdefg: ABCDEFG
+    public let h: H
+    
+    @inlinable
+    public init(
+      _ abcdefg: ABCDEFG,
+      _ h: H
+    ) {
+      self.abcdefg = abcdefg
+      self.h = h
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDEFG.Input) -> (A, B, C, D, E, F, G, H.Output)? {
+      let original = input
+      guard let (a, b, c, d, e, f, g) = self.abcdefg.parse(&input)
+      else { return nil }
+      guard let h = self.h.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f, g, h)
+    }
+  }
+
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take9<ABCDEFGH, A, B, C, D, E, F, G, H, I>: Parser
+  where
+    ABCDEFGH: Parser,
+    ABCDEFGH.Output == (A, B, C, D, E, F, G, H),
+    I: Parser,
+    ABCDEFGH.Input == I.Input
+  {
+    public let abcdefgh: ABCDEFGH
+    public let i: I
+    
+    @inlinable
+    public init(
+      _ abcdefgh: ABCDEFGH,
+      _ i: I
+    ) {
+      self.abcdefgh = abcdefgh
+      self.i = i
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDEFGH.Input) -> (A, B, C, D, E, F, G, H, I.Output)? {
+      let original = input
+      guard let (a, b, c, d, e, f, g, h) = self.abcdefgh.parse(&input)
+      else { return nil }
+      guard let i = self.i.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f, g, h, i)
+    }
+  }
+
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take10<ABCDEFGHI, A, B, C, D, E, F, G, H, I, J>: Parser
+  where
+    ABCDEFGHI: Parser,
+    ABCDEFGHI.Output == (A, B, C, D, E, F, G, H, I),
+    J: Parser,
+    ABCDEFGHI.Input == J.Input
+  {
+    public let abcdefghi: ABCDEFGHI
+    public let j: J
+    
+    @inlinable
+    public init(
+      _ abcdefghi: ABCDEFGHI,
+      _ j: J
+    ) {
+      self.abcdefghi = abcdefghi
+      self.j = j
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDEFGHI.Input) -> (A, B, C, D, E, F, G, H, I, J.Output)? {
+      let original = input
+      guard let (a, b, c, d, e, f, g, h, i) = self.abcdefghi.parse(&input)
+      else { return nil }
+      guard let j = self.j.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f, g, h, i, j)
+    }
+  }
+
+  /// A parser that runs a parser of a tuple of outputs and another parser, one after the other,
+  /// and returns a flattened tuple of the first parser's outputs and the second parser's output.
+  public struct Take11<ABCDEFGHIJ, A, B, C, D, E, F, G, H, I, J, K>: Parser
+  where
+    ABCDEFGHIJ: Parser,
+    ABCDEFGHIJ.Output == (A, B, C, D, E, F, G, H, I, J),
+    K: Parser,
+    ABCDEFGHIJ.Input == K.Input
+  {
+    public let abcdefghij: ABCDEFGHIJ
+    public let k: K
+    
+    @inlinable
+    public init(
+      _ abcdefghij: ABCDEFGHIJ,
+      _ k: K
+    ) {
+      self.abcdefghij = abcdefghij
+      self.k = k
+    }
+    
+    @inlinable
+    public func parse(_ input: inout ABCDEFGHIJ.Input) -> (A, B, C, D, E, F, G, H, I, J, K.Output)? {
+      let original = input
+      guard let (a, b, c, d, e, f, g, h, i, j) = self.abcdefghij.parse(&input)
+      else { return nil }
+      guard let k = self.k.parse(&input)
+      else {
+        input = original
+        return nil
+      }
+      return (a, b, c, d, e, f, g, h, i, j, k)
     }
   }
 }
